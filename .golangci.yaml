@@ -1,0 +1,53 @@
+
+version: "2"
+run:
+  timeout: 10m
+linters:
+  default: none
+  enable:
+    - copyloopvar
+    - errcheck
+    - gochecknoinits
+    - goconst
+    - govet
+    - ineffassign
+    - intrange
+    - misspell
+    - nilerr
+    - staticcheck
+    - unconvert
+    - unparam
+    - unused
+    - gocyclo
+    - gocritic
+  settings:
+    staticcheck:
+      checks:
+        - all
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - vendor
+      - hack
+      - charts
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - vendor
+      - hack
+      - charts
+      - third_party$
+      - builtin$
+      - examples$

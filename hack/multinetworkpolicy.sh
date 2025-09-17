@@ -1,0 +1,36 @@
+#!/bin/bash
+# Copyright 2025 Marcelo Parisi (github.com/feitnomore)
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+source ./hack/kind-common.sh
+
+_get_multinetworkpolicy()
+{
+    if [ -f LICENSE ] &&  [ -f go.mod ] && [ -f go.sum ] 
+    then
+        curl -Lo ${EXAMPLES}/multinetworkpolicy.yaml https://raw.githubusercontent.com/k8snetworkplumbingwg/multi-networkpolicy/master/scheme.yml
+    else
+        echo "This should run from root path"
+    fi
+}
+
+_apply_multinetworkpolicy()
+{
+    if [ -f LICENSE ] &&  [ -f go.mod ] && [ -f go.sum ] 
+    then
+        ./hack/kubectl.sh apply -f ./hack/examples/multinetworkpolicy.yaml
+    else
+        echo "This should run from root path"
+    fi
+}
