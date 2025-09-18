@@ -98,11 +98,11 @@ spec:
       serviceAccountName: mnp-nft-bridge
       containers:
       - name: mnp-nft-bridge
-        image: mnp-nft-bridge/mnp-nft-bridge:latest
+        image: kubevirtmanager/mnp-nft-bridge:latest
         imagePullPolicy: IfNotPresent
         command: ["/usr/bin/mnp-nft-bridge"]
         args:
-          - "--v=8"
+          - "--v=1"
           - "--logtostderr=true"
         securityContext:
           privileged: true
