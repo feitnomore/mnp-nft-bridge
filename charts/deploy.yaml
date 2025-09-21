@@ -76,6 +76,7 @@ metadata:
     tier: node
     app: mnp-nft-bridge
     name: mnp-nft-bridge
+    version: dev
 spec:
   selector:
     matchLabels:
@@ -88,6 +89,7 @@ spec:
         tier: node
         app: mnp-nft-bridge
         name: mnp-nft-bridge
+        version: dev
     spec:
       hostNetwork: true
       nodeSelector:

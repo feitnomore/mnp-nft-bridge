@@ -22,4 +22,6 @@
 
 The CI/CD artifacts related to this repo are in [mnp-nft-bridge-infra](https://github.com/kubevirt-manager/mnp-nft-bridge-infra/).  
 Our CI/CD portal is [cicd.kubevirt-manager.io](https://cicd.kubevirt-manager.io/).  
-The solution is heavily based on [Tekton](https://tekton.dev/).
+The CI/CD solution is heavily based on [Tekton](https://tekton.dev/).  
+  
+You can visit https://cicd.kubevirt-manager.io/assets/coverage.html to check our test coverage.
