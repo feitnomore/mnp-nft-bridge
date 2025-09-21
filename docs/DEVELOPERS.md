@@ -72,11 +72,13 @@ To run the unit tests for all packages:
 make test
 ```
 
+I've tried to avoid creating lots of mocks for Unit Testing, so some testing is left for E2E for now.
+
 #### End-to-End (e2e) Tests
 
-We have full [documentation](test/e2e/) on our E2E Tests.  
+We have full [documentation](../test/e2e/) on our E2E Tests.  
 
-The e2e tests are located in `test/e2e/`. Locally they use the `kind` cluster set up by the `cluster-up.sh` script. Don't forget to run `cluster-sync.sh` to deploy the controller inside `kind`. Each scenario is self-contained and tests a specific feature or behavior of the controller.  
+The e2e tests are located in `../test/e2e/`. Locally they use the `kind` cluster set up by the `cluster-up.sh` script. Don't forget to run `cluster-sync.sh` to deploy the controller inside `kind`. Each scenario is self-contained and tests a specific feature or behavior of the controller.  
 
 To execute the scenario you can basically run `execute.sh` script inside scenarios directory.  
 
