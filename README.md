@@ -50,8 +50,7 @@ This guide explains how to deploy the mnp-nft-bridge controller in your cluster.
 Deploy the mnp-nft-bridge controller as a `DaemonSet` using the provided manifest:
 
 ```bash
-# Replace the URL with the raw link to your deploy.yaml file in the main branch
-kubectl apply -f https://raw.githubusercontent.com/kubevirt-manager/mnp-nft-bridge/main/charts/deploy.yaml
+kubectl apply -f https://github.com/kubevirt-manager/mnp-nft-bridge/releases/download/v0.1.0/deploy-v0.1.0.yaml
 ```
 
 After applying, the controller will be deployed to the `kube-system` namespace and will begin watching for resources across the cluster.
