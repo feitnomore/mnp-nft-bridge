@@ -1,11 +1,11 @@
 # mnp-nft-bridge: A Kubernetes MultiNetworkPolicy Controller for nftables
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Go Report Card](https://goreportcard.com/badge/github.com/feitnomore/mnp-nft-bridge)](https://goreportcard.com/report/github.com/kubevirt-manager/mnp-nft-bridge)
+[![Go Report Card](https://goreportcard.com/badge/github.com/kubevirt-manager/mnp-nft-bridge)](https://goreportcard.com/report/github.com/kubevirt-manager/mnp-nft-bridge)
 [![Go.Dev Reference](https://img.shields.io/badge/go.dev-reference-007d9c?logo=go&logoColor=white)](https://pkg.go.dev/github.com/kubevirt-manager/mnp-nft-bridge)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](#)
 [![Code Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](#)
-[![GitHub release](https://img.shields.io/github/v/release/feitnomore/mnp-nft-bridge)](https://github.com/kubevirt-manager/mnp-nft-bridge/releases)
+[![GitHub release](https://img.shields.io/github/v/release/kubevirt-manager/mnp-nft-bridge)](https://github.com/kubevirt-manager/mnp-nft-bridge/releases)
 
 ```text
                                      __ _          _          _     _
