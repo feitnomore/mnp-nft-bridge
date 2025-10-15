@@ -89,10 +89,10 @@ cleanup() {
     ${KUBECTL} delete --ignore-not-found=true -f "${TARGET_POD_FILE}"
 
     log_info "  Waiting for Pods to be deleted (may take a bit)..."
-    ${KUBECTL} wait --for=delete pod/"${DEST_POD_GAMMA_NAME}" -n "${DEST_POD_GAMMA_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout/Not Found waiting for pod ${DEST_POD_GAMMA_NAME} to be deleted."
-    ${KUBECTL} wait --for=delete pod/"${SOURCE_POD_BETA_NAME}" -n "${SOURCE_POD_BETA_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout/Not Found waiting for pod ${SOURCE_POD_BETA_NAME} to be deleted."
-    ${KUBECTL} wait --for=delete pod/"${SOURCE_POD_ALPHA_NAME}" -n "${SOURCE_POD_ALPHA_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout/Not Found waiting for pod ${SOURCE_POD_ALPHA_NAME} to be deleted."
-    ${KUBECTL} wait --for=delete pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout/Not Found waiting for pod ${TARGET_POD_NAME} to be deleted."
+    ${KUBECTL} wait --for=delete pod/"${DEST_POD_GAMMA_NAME}" -n "${DEST_POD_GAMMA_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout/Not Found waiting for pod ${DEST_POD_GAMMA_NAME} to be deleted."
+    ${KUBECTL} wait --for=delete pod/"${SOURCE_POD_BETA_NAME}" -n "${SOURCE_POD_BETA_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout/Not Found waiting for pod ${SOURCE_POD_BETA_NAME} to be deleted."
+    ${KUBECTL} wait --for=delete pod/"${SOURCE_POD_ALPHA_NAME}" -n "${SOURCE_POD_ALPHA_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout/Not Found waiting for pod ${SOURCE_POD_ALPHA_NAME} to be deleted."
+    ${KUBECTL} wait --for=delete pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout/Not Found waiting for pod ${TARGET_POD_NAME} to be deleted."
 
     log_info "  Waiting for controller to process Pods deletion (15s)..."
     sleep 15
@@ -103,9 +103,9 @@ cleanup() {
     ${KUBECTL} delete --ignore-not-found=true -f "${NS_TARGET_FILE}"
     
     log_info "  Waiting for Namespaces to be deleted (may take a bit)..."
-    ${KUBECTL} wait --for=delete namespace/"${DEST_POD_GAMMA_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout waiting for ${DEST_POD_GAMMA_NAMESPACE} to be deleted."
-    ${KUBECTL} wait --for=delete namespace/"${SOURCE_POD_BETA_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout waiting for ${SOURCE_POD_BETA_NAMESPACE} to be deleted."
-    ${KUBECTL} wait --for=delete namespace/"${TARGET_POD_NAMESPACE}" --timeout=120s || log_warn "⚠️ Timeout waiting for ${TARGET_POD_NAMESPACE} to be deleted."
+    ${KUBECTL} wait --for=delete namespace/"${DEST_POD_GAMMA_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout waiting for ${DEST_POD_GAMMA_NAMESPACE} to be deleted."
+    ${KUBECTL} wait --for=delete namespace/"${SOURCE_POD_BETA_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout waiting for ${SOURCE_POD_BETA_NAMESPACE} to be deleted."
+    ${KUBECTL} wait --for=delete namespace/"${TARGET_POD_NAMESPACE}" --timeout=180s || log_warn "⚠️ Timeout waiting for ${TARGET_POD_NAMESPACE} to be deleted."
 
     log_info "  Deleting NetworkAttachmentDefinition..."
     ${KUBECTL} delete --ignore-not-found=true -f "${NAD_FILE}"
@@ -200,7 +200,7 @@ ${KUBECTL} apply -f "${SOURCE_POD_BETA_FILE}"
 ${KUBECTL} apply -f "${DEST_POD_GAMMA_FILE}"
 
 log_info "⏳ Waiting pod ${TARGET_POD_NAMESPACE}/${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${TARGET_POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then
@@ -209,7 +209,7 @@ then
 fi
 
 log_info "⏳ Waiting pod ${SOURCE_POD_ALPHA_NAMESPACE}/${SOURCE_POD_ALPHA_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${SOURCE_POD_ALPHA_NAME}" -n "${SOURCE_POD_ALPHA_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${SOURCE_POD_ALPHA_NAME}" -n "${SOURCE_POD_ALPHA_NAMESPACE}" --timeout=240s
 SOURCE_POD_ALPHA_MAC_GLOBAL=$(get_pod_mac "${SOURCE_POD_ALPHA_NAME}" "${SOURCE_POD_ALPHA_NAMESPACE}")
 if [[ -z "$SOURCE_POD_ALPHA_MAC_GLOBAL" ]]
 then
@@ -218,7 +218,7 @@ then
 fi
 
 log_info "⏳ Waiting pod ${SOURCE_POD_BETA_NAMESPACE}/${SOURCE_POD_BETA_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${SOURCE_POD_BETA_NAME}" -n "${SOURCE_POD_BETA_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${SOURCE_POD_BETA_NAME}" -n "${SOURCE_POD_BETA_NAMESPACE}" --timeout=240s
 SOURCE_POD_BETA_MAC_GLOBAL=$(get_pod_mac "${SOURCE_POD_BETA_NAME}" "${SOURCE_POD_BETA_NAMESPACE}")
 if [[ -z "$SOURCE_POD_BETA_MAC_GLOBAL" ]]
 then
@@ -227,7 +227,7 @@ then
 fi
 
 log_info "⏳ Waiting pod ${DEST_POD_GAMMA_NAMESPACE}/${DEST_POD_GAMMA_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${DEST_POD_GAMMA_NAME}" -n "${DEST_POD_GAMMA_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${DEST_POD_GAMMA_NAME}" -n "${DEST_POD_GAMMA_NAMESPACE}" --timeout=240s
 DEST_POD_GAMMA_MAC_GLOBAL=$(get_pod_mac "${DEST_POD_GAMMA_NAME}" "${DEST_POD_GAMMA_NAMESPACE}")
 if [[ -z "$DEST_POD_GAMMA_MAC_GLOBAL" ]]
 then

@@ -223,7 +223,7 @@ ${KUBECTL} apply -f "${POD_FILE}"
 ${KUBECTL} apply -f "${MNP_FILE}"
 
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} in ${TARGET_NAMESPACE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${TARGET_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then

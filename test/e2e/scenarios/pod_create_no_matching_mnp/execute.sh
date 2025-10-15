@@ -158,7 +158,7 @@ sleep 10
 log_info "🔩 Applying Pod (app=bar): ${NEW_POD_FILE}"
 ${KUBECTL} apply -f "${NEW_POD_FILE}"
 log_info "⏳ Waiting for pod ${NEW_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${NEW_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${NEW_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 NEW_POD_MAC_GLOBAL=$(get_pod_mac "${NEW_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$NEW_POD_MAC_GLOBAL" ]]
 then

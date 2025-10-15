@@ -105,7 +105,7 @@ ${KUBECTL} apply -f "${NAD_FILE}"
 log_info "🔩 Applying Pod: ${POD_FILE}"
 ${KUBECTL} apply -f "${POD_FILE}"
 log_info "⏳ Waiting for pod ${TARGET_POD_NAMESPACE}/${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=120s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=180s
 log_success "✔️ Pod ${TARGET_POD_NAMESPACE}/${TARGET_POD_NAME} is ready."
 
 

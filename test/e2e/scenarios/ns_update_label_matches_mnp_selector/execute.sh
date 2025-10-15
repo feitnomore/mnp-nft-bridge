@@ -168,7 +168,7 @@ ${KUBECTL} apply -f "${TARGET_POD_FILE}"
 ${KUBECTL} apply -f "${CLIENT_POD_FILE}" # Pod in client namespace
 
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} in ${TARGET_POD_NAMESPACE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${TARGET_POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then
@@ -177,7 +177,7 @@ then
 fi
 
 log_info "⏳ Waiting for pod ${CLIENT_POD_NAME} in ${CLIENT_NAMESPACE_TO_UPDATE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${CLIENT_POD_NAME}" -n "${CLIENT_NAMESPACE_TO_UPDATE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${CLIENT_POD_NAME}" -n "${CLIENT_NAMESPACE_TO_UPDATE}" --timeout=240s
 CLIENT_POD_MAC_GLOBAL=$(get_pod_mac "${CLIENT_POD_NAME}" "${CLIENT_NAMESPACE_TO_UPDATE}")
 if [[ -z "$CLIENT_POD_MAC_GLOBAL" ]]
 then

@@ -146,7 +146,7 @@ ${KUBECTL} apply -f "${NAD_FILE}"
 ${KUBECTL} apply -f "${POD_FILE}"
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} to be ready..."
 sleep 15s
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then

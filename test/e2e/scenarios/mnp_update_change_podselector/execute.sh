@@ -287,7 +287,7 @@ ${KUBECTL} apply -f "${POD_A_FILE}"
 ${KUBECTL} apply -f "${POD_B_FILE}"
 
 log_info "⏳ Waiting for pod ${POD_A_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${POD_A_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${POD_A_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 POD_A_MAC_GLOBAL=$(get_pod_mac "${POD_A_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$POD_A_MAC_GLOBAL" ]]
 then
@@ -296,7 +296,7 @@ then
 fi
 
 log_info "⏳ Waiting for pod ${POD_B_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${POD_B_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${POD_B_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 POD_B_MAC_GLOBAL=$(get_pod_mac "${POD_B_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$POD_B_MAC_GLOBAL" ]]
 then

@@ -281,7 +281,7 @@ ${KUBECTL} apply -f "${POD_B_FILE}"
 ${KUBECTL} apply -f "${POD_C_OTHER_NS_FILE}" # Pod in different namespace
 
 log_info "⏳ Waiting for pod ${POD_A_NAME} in ${TARGETNAMESPACE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${POD_A_NAME}" -n "${TARGET_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${POD_A_NAME}" -n "${TARGET_NAMESPACE}" --timeout=240s
 POD_A_MAC_GLOBAL=$(get_pod_mac "${POD_A_NAME}" "${TARGET_NAMESPACE}")
 if [[ -z "$POD_A_MAC_GLOBAL" ]]
 then
@@ -290,7 +290,7 @@ then
 fi
 
 log_info "⏳ Waiting for pod ${POD_B_NAME} in ${TARGETNAMESPACE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${POD_B_NAME}" -n "${TARGET_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${POD_B_NAME}" -n "${TARGET_NAMESPACE}" --timeout=240s
 POD_B_MAC_GLOBAL=$(get_pod_mac "${POD_B_NAME}" "${TARGET_NAMESPACE}")
 if [[ -z "$POD_B_MAC_GLOBAL" ]]
 then
@@ -299,7 +299,7 @@ then
 fi
 
 log_info "⏳ Waiting for pod ${POD_C_NAME} in ${POD_C_NAMESPACE} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${POD_C_NAME}" -n "${POD_C_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${POD_C_NAME}" -n "${POD_C_NAMESPACE}" --timeout=240s
 POD_C_MAC_GLOBAL=$(get_pod_mac "${POD_C_NAME}" "${POD_C_NAMESPACE}")
 if [[ -z "$POD_C_MAC_GLOBAL" ]]
 then

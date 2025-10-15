@@ -115,11 +115,11 @@ log_info "🔩 Applying Client Pod: ${CLIENT_POD_FILE}"
 ${KUBECTL} apply -f "${CLIENT_POD_FILE}"
 
 log_info "⏳ Waiting for ${TARGET_POD_NAMESPACE}/${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=120s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${TARGET_POD_NAMESPACE}" --timeout=180s
 log_success "✔️ Pod ${TARGET_POD_NAMESPACE}/${TARGET_POD_NAME} is ready."
 
 log_info "⏳ Waiting for ${CLIENT_POD_NAMESPACE}/${CLIENT_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${CLIENT_POD_NAME}" -n "${CLIENT_POD_NAMESPACE}" --timeout=120s
+${KUBECTL} wait --for=condition=Ready pod/"${CLIENT_POD_NAME}" -n "${CLIENT_POD_NAMESPACE}" --timeout=180s
 log_success "✔️ Pod ${CLIENT_POD_NAMESPACE}/${CLIENT_POD_NAME} is ready."
 
 TARGET_POD_MAC=$(get_pod_mac "${TARGET_POD_NAME}" "${TARGET_POD_NAMESPACE}")

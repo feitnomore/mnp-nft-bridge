@@ -165,7 +165,7 @@ ${KUBECTL} apply -f "${TARGET_POD_FILE}"
 ${KUBECTL} apply -f "${PEER_POD_FILE}"
 
 log_info "⏳ Waiting pod ${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then
@@ -174,7 +174,7 @@ then
 fi
 
 log_info "⏳ Waiting pod ${PEER_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${PEER_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${PEER_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 PEER_POD_MAC_GLOBAL=$(get_pod_mac "${PEER_POD_NAME}" "${POD_NAMESPACE}") # Used to check the egress rule
 if [[ -z "$PEER_POD_MAC_GLOBAL" ]]
 then

@@ -193,7 +193,7 @@ log_info "🔩 Creating NetworkAttachmentDefinition ${NAD_NAMESPACE_IN_MANIFEST}
 ${KUBECTL} apply -f "${NAD_FILE}"
 
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} to be ready AFTER creating NetworkAttachmentDefinition..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then
