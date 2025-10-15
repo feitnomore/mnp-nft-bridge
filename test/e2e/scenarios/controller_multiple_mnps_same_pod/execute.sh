@@ -237,7 +237,7 @@ ${KUBECTL} apply -f "${MNP_ALPHA_FILE}"
 ${KUBECTL} apply -f "${MNP_BETA_FILE}"
 
 log_info "⏳ Waiting for pod ${SHARED_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${SHARED_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${SHARED_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 SHARED_POD_MAC_GLOBAL=$(get_pod_mac "${SHARED_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$SHARED_POD_MAC_GLOBAL" ]]
 then

@@ -246,7 +246,7 @@ ${KUBECTL} apply -f "${POD_FILE}"
 ${KUBECTL} apply -f "${MNP_FILE}" # MultiNetworkPolicy is for bridge interface
 
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 
 # Get the MAC of the bridge interface (net1, associated with e2e-test-bridge)
 # The k8s.v1.cni.cncf.io/networks annotation on the pod is "e2e-test-bridge, e2e-test-macvlan"

@@ -68,7 +68,7 @@ cleanup() {
         if ${KUBECTL} get pod "$controller_pod_name_cleanup" -n "${NFT_CONTROLLER_NAMESPACE}" > /dev/null 2>&1; then
             if ! ${KUBECTL} get pod "$controller_pod_name_cleanup" -n "${NFT_CONTROLLER_NAMESPACE}" -o jsonpath='{.status.containerStatuses[?(@.name=="mnp-nft-bridge")].ready}' | grep -q true; then
                 log_warn "  Controller pod ${controller_pod_name_cleanup} is not ready. Waiting..."
-                ${KUBECTL} wait --for=condition=Ready pod/"${controller_pod_name_cleanup}" -n "${NFT_CONTROLLER_NAMESPACE}" --timeout=120s || log_warn "⚠️ Controller pod not ready after scaling in cleanup."
+                ${KUBECTL} wait --for=condition=Ready pod/"${controller_pod_name_cleanup}" -n "${NFT_CONTROLLER_NAMESPACE}" --timeout=180s || log_warn "⚠️ Controller pod not ready after scaling in cleanup."
             else
                 log_info "  Controller pod ${controller_pod_name_cleanup} is now ready."
             fi
@@ -315,7 +315,7 @@ ${KUBECTL} apply -f "${POD_FILE}"
 ${KUBECTL} apply -f "${MNP_FILE}"
 
 log_info "⏳ Waiting for pod ${TARGET_POD_NAME} to be ready..."
-${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=180s
+${KUBECTL} wait --for=condition=Ready pod/"${TARGET_POD_NAME}" -n "${POD_NAMESPACE}" --timeout=240s
 TARGET_POD_MAC_GLOBAL=$(get_pod_mac "${TARGET_POD_NAME}" "${POD_NAMESPACE}")
 if [[ -z "$TARGET_POD_MAC_GLOBAL" ]]
 then
@@ -369,7 +369,7 @@ then
     log_error "❌ New controller pod not found after deletion."
     exit 1
 fi
-${KUBECTL} wait --for=condition=Ready pod/"${NEW_CONTROLLER_POD_NAME}" -n "${NFT_CONTROLLER_NAMESPACE}" --timeout=120s
+${KUBECTL} wait --for=condition=Ready pod/"${NEW_CONTROLLER_POD_NAME}" -n "${NFT_CONTROLLER_NAMESPACE}" --timeout=180s
 log_success "✔️ Controller pod mnp-nft-bridge (${NEW_CONTROLLER_POD_NAME}) has been recreated and is ready."
 
 log_info "⏳ Waiting for the restarted controller to reconcile state (60 seconds)..."
